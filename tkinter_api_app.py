@@ -18,7 +18,8 @@ import json
 root = Tk()
 root.title("Tkinter + API App")
 root.iconbitmap("icon.ico")
-root.geometry("400x400")
+root.geometry("400x40")
+root.configure(background="green")
 
 
 #Api - Generated URL
@@ -32,11 +33,32 @@ try:
     #Crear una nueva variable api
     api = json.loads(api_request.content)
 
+    #cargar variables de acuerdo al contenido de la api que queremos ver
+    city = api[0]['ReportingArea']
+    quality = api[0]['AQI']
+    category = api[0]['Category']['Name']
+
+
 except Exception as e:
     api = "Error de conexion con la API"
 
-myLabel = Label(root, text=api)
+
+#Crear la etiqueta para visualizar el contenido de la api en la ventana
+#Crear la etiqueta para visualizar el contenido de la api en la ventana
+#myLabel = Label(root, text=api)
+#myLabel.grid(row=0, column=0)
+#probar conexion de api
+
+
+#Definimos que campos de la API vamos a utilizar
+myLabel = Label(root, text=city + "  " + "Air Quality" + " " + str(quality) + " " + category, font= ("Helvetica",22,"bold"), background = "green")
 myLabel.grid(row=0, column=0)
+
+
+
+
+
+
 
 
 
